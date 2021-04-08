@@ -1,2 +1,2 @@
-import './js/module';
+import './js/search';
 import './styles.css';
