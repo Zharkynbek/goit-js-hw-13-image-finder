@@ -22,7 +22,7 @@ function formSearch(e) {
   requestParams.query = query;
   if (requestParams.query === '') {
     error({
-      text: 'enter query',
+      text: 'Enter something',
       delay: 2000,
     });
     return;
@@ -32,7 +32,7 @@ function formSearch(e) {
     console.log(resp);
     if (resp.length === 0) {
       error({
-        text: 'not found',
+        text: 'Not found. Try again!',
         delay: 2000,
       });
       return;
