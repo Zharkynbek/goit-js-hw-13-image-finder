@@ -1,25 +1,20 @@
-import './js/search';
+import refs from './js/refs';
+import modal from './js/modal.js';
+import clearBtn from './js/clear-btn.js';
 import './styles.css';
 import './basicLightBox.min.css';
 import getData from './js/apiService';
 import tmpl from './templates/tmpl.hbs';
-import * as basicLightbox from 'basiclightbox';
 import { error } from '@pnotify/core';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/core/dist/BrightTheme.css';
-
-const refs = {
-  form: document.querySelector('#search-form'),
-  gallery: document.querySelector('.gallery'),
-  load: document.querySelector('.load'),
-};
 
 const requestParams = {
   query: '',
   page: 1,
 };
 
-refs.form.addEventListener('submit', e => {
+function formSearch(e) {
   e.preventDefault();
   refs.gallery.innerHTML = '';
   const query = e.target.children[0].value;
@@ -43,23 +38,17 @@ refs.form.addEventListener('submit', e => {
       return;
     }
     refs.load.classList.add('is-open');
+    refs.clear.classList.add('is-open');
     refs.gallery.insertAdjacentHTML(
       'beforeend',
       resp.map(el => tmpl(el)).join(''),
     );
   });
-});
-
-// ================= modal =====================
-
-refs.gallery.addEventListener('click', e => {
-  if (e.target.nodeName === 'IMG') {
-    const instance = basicLightbox.create(
-      `<img src=${e.target.dataset.source} width="800" height="600">`,
-    );
-    instance.show();
-  }
-});
+}
+refs.form.addEventListener('submit', formSearch);
+refs.gallery.addEventListener('click', modal);
+refs.clear.addEventListener('click', clearBtn);
+refs.load.addEventListener('click', loadMoreImage);
 
 // ============== load more =====================
 
@@ -70,7 +59,7 @@ function loadMoreImage() {
       'beforeend',
       resp.map(el => tmpl(el)).join(''),
     );
-    const totalScrollHeight = refs.gallery.clientHeight + 100;
+    const totalScrollHeight = refs.gallery.clientHeight + 22;
     console.log(refs.gallery.clientHeight);
     window.scrollTo({
       top: totalScrollHeight,
@@ -78,12 +67,14 @@ function loadMoreImage() {
     });
   });
 }
+// ================= Observer  =============================
 
-const observer = new IntersectionObserver(loadMoreImage, {
-  root: null,
-  rootMargin: '0px',
-  threshold: 0,
-});
+// =====this function is in processing modus (not finished)=========
 
-observer.observe(refs.load);
-refs.load.addEventListener('click', loadMoreImage);
+// const observer = new IntersectionObserver(loadMoreImage, {
+//   root: null,
+//   rootMargin: '0px',
+//   threshold: 0,
+// });
+
+// observer.observe(refs.load);
