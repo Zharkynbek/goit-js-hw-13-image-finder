@@ -81,6 +81,7 @@ img {
   margin-bottom: -25px;
   background-color: #ecb10f;
   color: azure;
+  margin-bottom: 15px;
 }
 
 .toStart {
@@ -109,13 +110,18 @@ img {
 
 .material-icons {
   color: #ecb10f;
-  display: flex;
-  justify-content: flex-end;
   font-size: 42px;
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  background-color: transparent;
+  bottom: 0px;
+  right: 50px;
+  text-decoration: none;
+  text-align: center;
+  line-height: 50px;
   opacity: 0;
   cursor: pointer;
-  margin-bottom: 20px;
-  margin-right: 20px;
 }
 
 .show {
