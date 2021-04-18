@@ -17,7 +17,7 @@ const requestParams = {
 function formSearch(e) {
   e.preventDefault();
   refs.gallery.innerHTML = '';
-  const query = e.target.children[0].value;
+  const query = e.target.children[0].value.trim();
   requestParams.page = 1;
   requestParams.query = query;
   if (requestParams.query === '') {
@@ -28,23 +28,25 @@ function formSearch(e) {
     return;
   }
 
-  getData(requestParams.query, requestParams.page).then(resp => {
-    console.log(resp);
-    if (resp.length === 0) {
-      error({
-        text: 'Not found. Try again!',
-        delay: 2000,
-      });
-      return;
-    }
-    refs.load.classList.add('is-open');
-    refs.clear.classList.add('is-open');
-    refs.iconToTop.classList.add('show');
-    refs.gallery.insertAdjacentHTML(
-      'beforeend',
-      resp.map(el => tmpl(el)).join(''),
-    );
-  });
+  if (query) {
+    getData(requestParams.query, requestParams.page).then(resp => {
+      console.log(resp);
+      if (resp.length === 0) {
+        error({
+          text: 'Not found. Try again!',
+          delay: 2000,
+        });
+        return;
+      }
+      refs.load.classList.add('is-open');
+      refs.clear.classList.add('is-open');
+      refs.iconToTop.classList.add('show');
+      refs.gallery.insertAdjacentHTML(
+        'beforeend',
+        resp.map(el => tmpl(el)).join(''),
+      );
+    });
+  }
 }
 
 function toTop(e) {
