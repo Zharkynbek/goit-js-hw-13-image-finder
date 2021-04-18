@@ -78,6 +78,21 @@ img {
   font-weight: 700;
   width: 100px;
   visibility: hidden;
+  margin-bottom: -25px;
+  background-color: #ecb10f;
+  color: azure;
+}
+
+.toStart {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  border-radius: 8%;
+  cursor: pointer;
+  font-weight: 700;
+  width: 100px;
+  visibility: hidden;
   margin-bottom: 15px;
   background-color: #ecb10f;
   color: azure;
@@ -90,4 +105,19 @@ img {
 .stats {
   display: flex;
   justify-content: space-between;
+}
+
+.material-icons {
+  color: #ecb10f;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 42px;
+  opacity: 0;
+  cursor: pointer;
+  margin-bottom: 20px;
+  margin-right: 20px;
+}
+
+.show {
+  opacity: 1;
 }

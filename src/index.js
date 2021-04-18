@@ -39,12 +39,24 @@ function formSearch(e) {
     }
     refs.load.classList.add('is-open');
     refs.clear.classList.add('is-open');
+    refs.iconToTop.classList.add('show');
     refs.gallery.insertAdjacentHTML(
       'beforeend',
       resp.map(el => tmpl(el)).join(''),
     );
   });
 }
+
+function toTop(e) {
+  e.preventDefault();
+  window.scrollTo({
+    top: 100,
+    left: 100,
+    behavior: 'smooth',
+  });
+}
+
+refs.iconToTop.addEventListener('click', toTop);
 refs.form.addEventListener('submit', formSearch);
 refs.gallery.addEventListener('click', modal);
 refs.clear.addEventListener('click', clearBtn);

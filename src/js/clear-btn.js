@@ -6,6 +6,7 @@ function clearBtn(e) {
   refs.load.classList.remove('is-open');
   refs.input.value = '';
   refs.clear.classList.remove('is-open');
+  refs.iconToTop.classList.remove('show');
 }
 
 export default clearBtn;
