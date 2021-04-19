@@ -8,6 +8,8 @@ import tmpl from './templates/tmpl.hbs';
 import { error } from '@pnotify/core';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/core/dist/BrightTheme.css';
+// import $ from 'jquery';
+import pagination from 'paginationjs';
 
 const requestParams = {
   query: '',
@@ -73,22 +75,35 @@ function loadMoreImage() {
       'beforeend',
       resp.map(el => tmpl(el)).join(''),
     );
-    const totalScrollHeight = refs.gallery.clientHeight + 22;
     console.log(refs.gallery.clientHeight);
-    window.scrollTo({
-      top: totalScrollHeight,
-      behavior: 'smooth',
-    });
   });
 }
 // ================= Observer  =============================
 
-// =====this function is in processing modus (not finished)=========
+const observer = new IntersectionObserver(loadMoreImage, {
+  root: null,
+  rootMargin: '0px',
+  threshold: 0,
+});
 
-// const observer = new IntersectionObserver(loadMoreImage, {
-//   root: null,
-//   rootMargin: '0px',
-//   threshold: 0,
+observer.observe(refs.load);
+
+// $('#demo').pagination({
+//   dataSource: function (done) {
+//     $.ajax({
+//       type: 'GET',
+//       url: `https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=${query}&per_page=120&key=15900106-2c235e732bb321ca7ec900d93`,
+//       success: function (data) {
+//         done(data.hits);
+//       },
+//     });
+//   },
+//   pageSize: 10,
+//   autoHidePrevious: true,
+//   autoHideNext: true,
+//   callback: function (data, pagination) {
+//     // template method of yourself
+//     var html = tmpl(data);
+//     $('#dataContainer').html(html);
+//   },
 // });
-
-// observer.observe(refs.load);
