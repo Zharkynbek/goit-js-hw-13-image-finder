@@ -13,7 +13,7 @@ import pagination from 'paginationjs';
 
 const requestParams = {
   query: '',
-  page: 1,
+  // page: 1,
 };
 
 function formSearch(e) {
@@ -34,6 +34,9 @@ function formSearch(e) {
     getData(requestParams.query, requestParams.page).then(resp => {
       console.log(resp);
       if (resp.length === 0) {
+        refs.load.classList.remove('is-open');
+        refs.clear.classList.remove('is-open');
+        refs.iconToTop.classList.remove('show');
         error({
           text: 'Not found. Try again!',
           delay: 2000,
