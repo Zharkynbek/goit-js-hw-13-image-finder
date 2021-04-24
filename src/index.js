@@ -13,7 +13,7 @@ import pagination from 'paginationjs';
 
 const requestParams = {
   query: '',
-  // page: 1,
+  page: 1,
 };
 
 function formSearch(e) {
@@ -23,6 +23,9 @@ function formSearch(e) {
   requestParams.page = 1;
   requestParams.query = query;
   if (requestParams.query === '') {
+    refs.load.classList.remove('is-open');
+    refs.clear.classList.remove('is-open');
+    refs.iconToTop.classList.remove('show');
     error({
       text: 'Enter something',
       delay: 2000,
