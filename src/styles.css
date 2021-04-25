@@ -24,7 +24,7 @@ body {
 }
 
 .search-form {
-  margin-top: 115px;
+  margin-top: 20px;
   display: flex;
   justify-content: center;
 }
@@ -55,6 +55,10 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
+}
+
+.list-card:hover {
+  transform: scale(1.11);
 }
 
 .gallery {

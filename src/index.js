@@ -60,7 +60,7 @@ function formSearch(e) {
 function toTop(e) {
   e.preventDefault();
   window.scrollTo({
-    top: 100,
+    top: -100,
     left: 100,
     behavior: 'smooth',
   });
@@ -82,17 +82,22 @@ function loadMoreImage() {
       resp.map(el => tmpl(el)).join(''),
     );
     console.log(refs.gallery.clientHeight);
+    const totalScrollHeight = refs.gallery.clientHeight;
+    window.scrollTo({
+      top: totalScrollHeight,
+      behavior: 'smooth',
+    });
   });
 }
 // ================= Observer  =============================
 
-const observer = new IntersectionObserver(loadMoreImage, {
-  root: null,
-  rootMargin: '0px',
-  threshold: 0,
-});
+// const observer = new IntersectionObserver(loadMoreImage, {
+//   root: null,
+//   rootMargin: '0px',
+//   threshold: 0,
+// });
 
-observer.observe(refs.load);
+// observer.observe(refs.load);
 
 // $('#demo').pagination({
 //   dataSource: function (done) {
