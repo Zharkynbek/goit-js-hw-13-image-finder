@@ -48,7 +48,6 @@ function formSearch(e) {
       }
       refs.load.classList.add('is-open');
       refs.clear.classList.add('is-open');
-      refs.iconToTop.classList.add('show');
       refs.gallery.insertAdjacentHTML(
         'beforeend',
         resp.map(el => tmpl(el)).join(''),
@@ -76,6 +75,7 @@ refs.load.addEventListener('click', loadMoreImage);
 
 function loadMoreImage() {
   requestParams.page += 1;
+  refs.iconToTop.classList.add('show');
   getData(requestParams.query, requestParams.page).then(resp => {
     refs.gallery.insertAdjacentHTML(
       'beforeend',
