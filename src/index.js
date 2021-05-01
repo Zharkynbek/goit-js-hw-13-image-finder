@@ -83,38 +83,18 @@ function loadMoreImage() {
     );
     console.log(refs.gallery.clientHeight);
     const totalScrollHeight = refs.gallery.clientHeight;
-    window.scrollTo({
-      top: totalScrollHeight,
-      behavior: 'smooth',
-    });
+    // window.scrollTo({
+    //   top: totalScrollHeight,
+    //   behavior: 'smooth',
+    // });
   });
 }
 // ================= Observer  =============================
 
-// const observer = new IntersectionObserver(loadMoreImage, {
-//   root: null,
-//   rootMargin: '0px',
-//   threshold: 0,
-// });
+const observer = new IntersectionObserver(loadMoreImage, {
+  root: null,
+  rootMargin: '0px',
+  threshold: 0,
+});
 
-// observer.observe(refs.load);
-
-// $('#demo').pagination({
-//   dataSource: function (done) {
-//     $.ajax({
-//       type: 'GET',
-//       url: `https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=${query}&per_page=120&key=15900106-2c235e732bb321ca7ec900d93`,
-//       success: function (data) {
-//         done(data.hits);
-//       },
-//     });
-//   },
-//   pageSize: 10,
-//   autoHidePrevious: true,
-//   autoHideNext: true,
-//   callback: function (data, pagination) {
-//     // template method of yourself
-//     var html = tmpl(data);
-//     $('#dataContainer').html(html);
-//   },
-// });
+observer.observe(refs.load);
